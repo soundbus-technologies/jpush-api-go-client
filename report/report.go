@@ -3,9 +3,8 @@ package report
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/soundbus-technologies/jpush-api-go-client/common"
 	"net/http"
-
-	"github.com/DeanThompson/jpush-api-go-client/common"
 )
 
 type ReceivedReportNode struct {

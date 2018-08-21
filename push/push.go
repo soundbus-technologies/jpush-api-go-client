@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/DeanThompson/jpush-api-go-client/common"
+	"github.com/soundbus-technologies/jpush-api-go-client/common"
 )
 
 type Validator interface {

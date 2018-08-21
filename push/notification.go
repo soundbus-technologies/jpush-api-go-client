@@ -3,7 +3,7 @@ package push
 import (
 	"encoding/json"
 
-	"github.com/DeanThompson/jpush-api-go-client/common"
+	"github.com/soundbus-technologies/jpush-api-go-client/common"
 )
 
 // “通知”对象，是一条推送的实体内容对象之一（另一个是“消息”）
@@ -27,7 +27,7 @@ func (n *Notification) Validate() error {
 
 // 平台通用的通知属性
 type platformNotification struct {
-	Alert  string                 `json:"alert"` // required
+	Alert  interface{}            `json:"alert"` // required
 	Extras map[string]interface{} `json:"extras,omitempty"`
 }
 
@@ -52,7 +52,14 @@ func NewAndroidNotification(alert string) *AndroidNotification {
 	return n
 }
 
-// iOS 平台上 APNs 通知。
+//iOS平台上专有的alert属性
+type IosAlert struct {
+	Title    string `json:"title,omitempty"`
+	Subtitle string `json:"subtitle,omitempty"`
+	Body     string `json:"body,omitempty"`
+}
+
+// iOS 平台上 APNs 通知。NewIosNotification
 type IosNotification struct {
 	platformNotification
 
@@ -62,7 +69,7 @@ type IosNotification struct {
 	Category         string `json:"category,omitempty"`
 }
 
-func NewIosNotification(alert string) *IosNotification {
+func NewIosNotification(alert interface{}) *IosNotification {
 	a := &IosNotification{}
 	a.Alert = alert
 	return a
